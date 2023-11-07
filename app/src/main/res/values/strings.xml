@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">OfficeCafe</string>
+    <string name="sign_in">Sign in</string>
+    <string name="employee_email">Employee Email</string>
+    <string name="email_address">employee@cynoteck.com</string>
+    <string name="logout">Logout</string>
+    <string name="email_id">Email Id</string>
+    <string name="name">Name</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="balance_value">balance value</string>
+    <string name="email">email</string>
+    <string name="Name">name</string>
+    <string name="pay_now">Pay Now</string>
+</resources>
