@@ -9,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.example.officecafe.network.KotlinClient
 
 @SuppressLint("CustomSplashScreen")
 @Suppress("DEPRECATION")
@@ -27,6 +28,7 @@ class SplashActivity : AppCompatActivity() {
         Log.d("preference","$email")
 
         if (shrd?.isNotEmpty() == true) {
+            KotlinClient.authToken = shrd
             Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, DetailedActivity::class.java)
             intent.putExtra("token", shrd)

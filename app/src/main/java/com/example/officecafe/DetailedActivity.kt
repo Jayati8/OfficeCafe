@@ -12,16 +12,21 @@ import kotlinx.coroutines.launch
 class DetailedActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailedBinding
     private var receivedEmail:String? = null
-    private var token:String? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailedBinding.inflate(layoutInflater)
-        token = intent.getStringExtra("token")!!
         receivedEmail = intent.getStringExtra("email")
         val view = binding.root
         setContentView(view)
         getData()
+        onClick()
+    }
+
+    private fun onClick() {
+      binding.creditNote.setOnClickListener {
+          startCreditNoteActivity()
+      }
     }
 
     private fun getData() {
@@ -31,16 +36,15 @@ class DetailedActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-               Log.d("DetailActivity", "request: "+requestClass.toString())
-                val response = loginApiService.requestGetBalance(token!!, requestClass)
-                Log.d("DetailActivity", "getData: "+response)
+               Log.d("DetailActivity", "request: $requestClass")
+                val response = loginApiService.requestGetBalance(requestClass)
+                Log.d("DetailActivity", "getData: $response")
                 if (response.isSuccessful) {
                     val responseData = response.body()
                     if (responseData != null) {
                         binding.Name.text = responseData.data.name
                         binding.Email.text = responseData.data.email
                         binding.balanceValue.text = responseData.data.balance.toString()
-                        startCreditNoteActivity()
 
                         Log.e("DetailActivity", "$responseData")
                     } else {
@@ -59,7 +63,6 @@ class DetailedActivity : AppCompatActivity() {
 
         val intent = Intent(this,CreditNoteActivity::class.java)
         intent.putExtra("email",receivedEmail)
-        intent.putExtra("token",token)
         startActivity(intent)
         finish()
     }

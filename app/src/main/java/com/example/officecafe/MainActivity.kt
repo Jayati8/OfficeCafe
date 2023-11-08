@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
             email = binding.EmailAddress.text.toString()
             val requestModel = RequestModel(email!!)
-            val loginApiService = KotlinClient.api
+            val loginApiService = KotlinClient.retrofit
 
             lifecycleScope.launch {
                 try {

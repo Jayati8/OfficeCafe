@@ -33,7 +33,7 @@ class ValidateOtpActivity : AppCompatActivity() {
         binding.validate.setOnClickListener{
 
             val requestClass = RequestModelOtp(receivedEmail,binding.pinview.text.toString().toInt())
-            val loginApiService =KotlinClient.api
+            val loginApiService =KotlinClient.retrofit
 
             lifecycleScope.launch {
                 try {
@@ -43,7 +43,7 @@ class ValidateOtpActivity : AppCompatActivity() {
                         val responseData = response.body()
                         if (responseData != null) {
                             token = response.body()!!.data.token
-                            Log.d("preference","${ response.body()!!.data.email}")
+                            Log.d("preference", response.body()!!.data.email)
                             receivedEmail = response.body()!!.data.email
 
                             // Save the token to SharedPreferences

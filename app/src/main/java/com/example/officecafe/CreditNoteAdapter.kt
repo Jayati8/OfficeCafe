@@ -27,6 +27,6 @@ class CreditNoteAdapter(private val creditNotes: List<CreditNote>) : RecyclerVie
         holder.timeTextView.text = creditNote.creditNoteTime
     }
 
-    override fun getItemCount() = creditNotes.size
+    override fun getItemCount() = 2
 }
 
